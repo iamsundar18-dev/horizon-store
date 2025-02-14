@@ -13,7 +13,7 @@ A modern e-commerce web application built with Angular, featuring product browsi
 
 1. Clone the repository
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/iamsundar18-dev/horizon-store.git
 ```
 
 2. Install Dependencies
