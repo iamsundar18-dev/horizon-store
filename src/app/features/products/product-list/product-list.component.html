@@ -1,0 +1,48 @@
+<div class="product-list-container">
+
+    <div class="search-container">
+        <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+        <input type="text" [(ngModel)]="searchText" placeholder="Search products..." class="search-box">
+    </div>
+
+    <div class="product-grid" *ngIf="productObj.productList && productObj.productList.length > 0">
+        <div class="product-card" *ngFor="let product of productObj.productList | searchFilter:searchText">
+            <div class="card-content">
+                <div class="image-wrapper">
+                    <div class="discount-badge" *ngIf="product.price < 150">
+                        Sale
+                    </div>
+                    <img [src]="product.image" [alt]="product.title" loading="lazy">
+                </div>
+                <div class="product-details">
+                    <span class="category-tag">{{ product.category }}</span>
+                    <h3 class="title">{{ product.title }}</h3>
+                    <div class="price-rating-container">
+                        <div class="price-tag">
+                            <span class="currency">$</span>
+                            <span class="amount">{{ product.price.toFixed(2) }}</span>
+                        </div>
+                        <div class="rating-wrapper">
+                            <div class="stars">
+                                <mat-icon *ngFor="let star of [1,2,3,4,5]">
+                                    {{star <= product.rating.rate ? 'star' : 'star_border' }} </mat-icon>
+                            </div>
+                            <span class="review-count">({{ product.rating.count }})</span>
+                        </div>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-list-empty-state" *ngIf="(productObj.productList | searchFilter: searchText).length === 0">
+            <strong>No Products Found. Try a different search.</strong>
+        </div>
+    </div>
+</div>

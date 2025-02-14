@@ -1,0 +1,60 @@
+<!-- Hero Section with Dynamic Banners -->
+<section class="hero-section">
+    <div class="banner-container" [style.transform]="'translateX(-' + (currentBannerIndex * 100) + '%)'">
+        <div *ngFor="let banner of banners" class="banner">
+            <div class="banner-content">
+                <h1 class="banner-title">{{banner.title}}</h1>
+                <p class="banner-subtitle">{{banner.subtitle}}</p>
+                <button type="button" class="cta-button" (click)="goToProductList()">{{banner.cta}}</button>
+            </div>
+            <div class="banner-image">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/online-order-illustration-download-in-svg-png-gif-file-formats--book-ecommerce-and-shopping-pack-e-commerce-illustrations-2294212.png" [alt]="banner.title">
+            </div>
+        </div>
+    </div>
+
+    <div class="banner-indicators">
+        <span *ngFor="let banner of banners; let i = index" [class.active]="i === currentBannerIndex"
+            (click)="currentBannerIndex = i">
+        </span>
+    </div>
+</section>
+
+<section class="featured-products" @fadeIn>
+    <div class="section-header">
+        <h2>Featured Products</h2>
+        <div class="filter-chips">
+            <span class="chip active">All</span>
+            <span class="chip">New Arrivals</span>
+            <span class="chip">Best Sellers</span>
+            <span class="chip">On Sale</span>
+        </div>
+    </div>
+
+    <div class="products-grid">
+        <div *ngFor="let product of featuredProducts" class="product-card glass">
+            <div class="product-tag" *ngIf="product.tag">{{product.tag}}</div>
+            <div class="product-image">
+                <img [src]="product.image" [alt]="product.name">
+                <div class="quick-actions">
+                    <button class="action-btn"><mat-icon>favorite_border</mat-icon></button>
+                    <button class="action-btn"><mat-icon>shopping_cart</mat-icon></button>
+                    <button class="action-btn"><mat-icon>visibility</mat-icon></button>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3>{{product.name}}</h3>
+                <div class="rating">
+                    <mat-icon *ngFor="let star of [1,2,3,4,5]">
+                        {{star <= product.rating ? 'star' : 'star_border' }} </mat-icon>
+                </div>
+                <div class="price-container">
+                    <span class="current-price">${{product.price}}</span>
+                    <span class="discount" *ngIf="product.discount">
+                        -{{product.discount}}%
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

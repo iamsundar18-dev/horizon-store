@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+    margin: 0px;
+}
+
+top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .primary-logo {
+        cursor: pointer;
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 16px 46px;
+    background: linear-gradient(180deg, #e7f3ff 62.5%, #fff0);
+    mat-toolbar {
+        background: #fff;
+        color: #474747, 100%;
+        border-radius: 50px;
+        padding: 16px 30px 16px 25px;
+        box-shadow: 0 2px 4px #1a7de60a;
+        box-shadow: 0 16px 32px -4px #1a7de61a;
+
+        button {
+            color: #4D4D4F !important;
+        }
+    }
+}
+
+.login-section {
+    display: flex;
+    mat-icon {
+        color: #4D4D4F;
+    }
+}
+
+.product-list-container {
+    padding-top: 100px;
+}
